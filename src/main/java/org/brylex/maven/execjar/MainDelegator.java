@@ -11,6 +11,7 @@ public class MainDelegator {
     public static void main(String[] args) throws Exception {
 
         try (InputStream is = MainDelegator.class.getResourceAsStream("/META-INF/exec-jar.properties")) {
+
             Properties properties = new Properties();
             properties.load(is);
 
