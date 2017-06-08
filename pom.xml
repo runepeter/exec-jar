@@ -7,11 +7,11 @@
 
     <groupId>org.brylex.maven</groupId>
     <artifactId>exec-jar</artifactId>
-    <version>develop-SNAPSHOT</version>
+    <version>1.0-RC1</version>
     <packaging>maven-plugin</packaging>
 
     <url>http://s3.brylex.org/uber-jar/</url>
-    <description>Turns a WAR project artifact into an executable WAR file.</description>
+    <description>Turns a JAR module artifact into an executable JAR file that preserves dependencies.</description>
 
     <organization>
         <name>Brylex org.</name>
@@ -56,7 +56,7 @@
         </repository>
         <site>
             <id>s3</id>
-	    <url>s3://brylex.org/exec-jar/</url>
+            <url>s3://brylex.org/exec-jar/</url>
         </site>
     </distributionManagement>
 
@@ -254,6 +254,26 @@
             </plugin>
         </plugins>
     </reporting>
+    <profiles>
+        <profile>
+            <id>oss</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.8</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <serverId>sonatype-nexus-staging</serverId>
+                            <stagingProfileId>15508c690519a8</stagingProfileId>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
 </project>
 
