@@ -7,9 +7,10 @@
 
     <groupId>org.brylex.maven</groupId>
     <artifactId>exec-jar</artifactId>
-    <version>1.0-RC1</version>
+    <version>1.0-RC2-SNAPSHOT</version>
     <packaging>maven-plugin</packaging>
 
+    <name>Executable JAR</name>
     <url>http://s3.brylex.org/uber-jar/</url>
     <description>Turns a JAR module artifact into an executable JAR file that preserves dependencies.</description>
 
@@ -259,6 +260,20 @@
             <id>oss</id>
             <build>
                 <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
                     <plugin>
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
